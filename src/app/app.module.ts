@@ -1,18 +1,58 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { MaterialModule } from './material.module';
+import { HomeComponent } from './home/home.component';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { environment } from 'src/environments/environment';
+import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthModule } from 'src/modules/auth/auth.module';
+import { HttpReqResInterceptor } from 'src/modules/auth/http-req-res.interceptor';
 
+export function ModuleConfigFactory(): AuthModule {
+  return {
+    baseURL: environment.baseURL,
+    spaURL: environment.spaURL,
+  };
+}
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MaterialModule,
+    NgxsModule.forRoot([], {
+      developmentMode: !environment.production,
+    }),
+    NgxsRouterPluginModule.forRoot(),
+    ToastrModule.forRoot(),
+    ToastContainerModule,
+    HttpClientModule,
+    AuthModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpReqResInterceptor,
+      multi: true,
+    },
+    {
+      provide: AuthModule,
+      useFactory: ModuleConfigFactory,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,186 @@
+<div class="agent-register-container d-flex flex-column">
+    <div class="title h1">Customer Registration</div>
+    <div class="form-container d-flex align-items-center">
+        <form [formGroup]="signUpForm">
+            <div class=" d-flex justify-content-between">
+                <div class="mx-5 user-details-container">
+                    <mat-label class="details-label">User Details</mat-label>
+                    <div class="form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="Placeholder" formControlName="firstName" />
+                            <mat-error *ngIf="
+                      signUpForm.controls.firstName.touched &&
+                      (signUpForm.controls.firstName.hasError('required') ||
+                        signUpForm.controls.firstName.hasError('pattern'))
+                    ">Please enter a valid name</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Placeholder" formControlName="lastName" />
+                            <mat-error *ngIf="
+                            signUpForm.controls.lastName.touched &&
+                            (signUpForm.controls.lastName.hasError('required') ||
+                              signUpForm.controls.lastName.hasError('pattern'))
+                          ">Please enter a valid name</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Mobile Number</mat-label>
+                            <span matPrefix>+1 &nbsp;</span>
+                            <input type="tel" matInput placeholder="555-555-1234" formControlName="mobile" />
+                            <mat-error *ngIf="
+                      signUpForm.controls.mobile.touched &&
+                      (signUpForm.controls.mobile.hasError('required') ||
+                        signUpForm.controls.mobile.hasError('pattern'))
+                    ">Please enter a valid mobile number</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Placeholder" formControlName="email" />
+                            <mat-error *ngIf="
+                      signUpForm.controls.email.touched &&
+                      (signUpForm.controls.email.hasError('required') ||
+                        signUpForm.controls.email.hasError('pattern'))
+                    ">Please enter a valid email</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input [type]="showPass ? 'text' : 'password'" matInput placeholder="Placeholder"
+                                formControlName="password" />
+                            <span matSuffix (click)="showPass = !showPass" class="cursor-pointer">
+                                <i *ngIf="showPass" class="fa-solid fa-eye"></i>
+                                <i *ngIf="!showPass" class="fa-solid fa-eye-slash"></i>
+                            </span>
+                            <mat-error *ngIf="
+                            signUpForm.controls.password.touched &&
+                            (signUpForm.controls.password.hasError('required') ||
+                              signUpForm.controls.password.hasError('pattern'))
+                          ">Please enter a valid password</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Confirm Password</mat-label>
+                            <input [type]="showConfirmPass ? 'text' : 'password'" matInput placeholder="Placeholder"
+                                formControlName="confirmPassword" />
+                            <span matSuffix (click)="showConfirmPass = !showConfirmPass" class="cursor-pointer">
+                                <i *ngIf="showConfirmPass" class="fa-solid fa-eye"></i>
+                                <i *ngIf="!showConfirmPass" class="fa-solid fa-eye-slash"></i>
+                            </span>
+                            <mat-error *ngIf="
+                            signUpForm.controls.confirmPassword.touched &&
+                            (signUpForm.controls.confirmPassword.hasError('required') ||
+                              signUpForm.controls.confirmPassword.hasError('mustMatch'))
+                          ">Please enter the same password</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <div class="address-details-container" formGroupName="address">
+                    <mat-label class="details-label">Address Details</mat-label>
+                    <div class="d-flex ">
+                        <div class="col-5 me-4 form-field-container">
+                            <mat-form-field class="form-field" appearance="outline">
+                                <mat-label>Unit number (optional)</mat-label>
+                                <input matInput placeholder="Placeholder" formControlName="unitNumber" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-5 ms-4  form-field-container">
+                            <mat-form-field class="form-field" appearance="outline">
+                                <mat-label>Building number</mat-label>
+                                <input matInput placeholder="Placeholder" formControlName="buildingNumber" />
+                                <mat-error *ngIf="
+                                signUpForm.get('address.buildingNumber').touched &&
+                                (signUpForm.get('address.buildingNumber').hasError('required'))
+                              ">Please enter a building number</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+                    <div class="  form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Street Name</mat-label>
+                            <input matInput placeholder="Placeholder" formControlName="streetName" />
+                            <mat-error *ngIf="
+                            signUpForm.get('address.streetName').touched &&
+                            (signUpForm.get('address.streetName').hasError('required'))
+                          ">Please enter a valid street name</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class=" form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>City</mat-label>
+                            <input matInput placeholder="Placeholder" formControlName="city" />
+                            <mat-error *ngIf="
+                      signUpForm.get('address.city').touched &&
+                      (signUpForm.get('address.city').hasError('required'))
+                    ">Please enter a valid city</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class=" form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Province</mat-label>
+                            <mat-select formControlName="province" name="food">
+                                <mat-option *ngFor="let province of provinceList" [value]="province.key">
+                                    {{province.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="
+                            signUpForm.get('address.city').touched &&
+                            (signUpForm.get('address.city').hasError('required'))
+                          ">Please enter a valid city</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="  form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>PostalCode</mat-label>
+                            <input matInput placeholder="e.g. K1A0B1" formControlName="postalCode" />
+                            <mat-error *ngIf="
+                      signUpForm.get('address.postalCode').touched &&
+                      (signUpForm.get('address.postalCode').hasError('required'))
+                    ">Please enter a valid postal code</mat-error>
+                            <mat-error *ngIf="
+                    signUpForm.get('address.postalCode').touched &&
+                    (signUpForm.get('address.postalCode').hasError('invalidPostalCode'))">
+                                postal code should be in ANANAN (A-Alphabet, N- Number)</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="  form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Country</mat-label>
+                            <input readonly matInput placeholder="Placeholder" formControlName="country" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container mt-4">
+                <div class="buttons d-flex justify-content-center">
+                    <button mat-button class="secondary-btn mx-3" (click)="cancel()">Cancel</button>
+                    <button mat-flat-button class="bg-rose-taupe color-white fs-18" (click)="submit()">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <app-loader *ngIf="fetching"></app-loader>
+
+</div>

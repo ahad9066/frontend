@@ -1,0 +1,62 @@
+<div class="login-container container">
+    <div class="d-flex">
+
+        <div class="col-6 login-main-container d-flex flex-column justify-content-center align-items-center">
+            <!-- <div fxLayout="column"> -->
+            <div class="title h1">Log In</div>
+            <div class="form-container">
+                <form [formGroup]="loginForm">
+                    <div class="form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Email/Mobile number</mat-label>
+                            <input matInput placeholder="Enter your username" formControlName="username" />
+                            <mat-error
+                                *ngIf="loginForm.controls.username.touched && loginForm.get('username').errors?.invalidFormat">
+                                Invalid email or mobile number
+                            </mat-error>
+                            <mat-error
+                                *ngIf="loginForm.controls.username.touched && loginForm.get('username').errors?.required">
+                                required
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="form-field-container">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input [type]="showPass ? 'text' : 'password'" matInput placeholder="Enter your password"
+                                formControlName="password" />
+                            <span matSuffix (click)="showPass = !showPass" class="cursor-pointer">
+                                <i *ngIf="showPass" class="fa-solid fa-eye"></i>
+                                <i *ngIf="!showPass" class="fa-solid fa-eye-slash"></i>
+                            </span>
+                            <mat-error *ngIf="
+                    loginForm.controls.password.touched &&
+                    (loginForm.controls.password.hasError('required') ||
+                      loginForm.controls.password.hasError('pattern'))
+                  ">Please enter a valid password</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="button-container d-flex justify-content-center align-items-center">
+                        <button (click)="signIn()" type="button"
+                            class="login-btn btn bg-rose-taupe color-white fs-18">Login</button>
+                    </div>
+                </form>
+            </div>
+            <!-- </div> -->
+            <div class="sign-up-container d-flex flex-column">
+                <div class="sign-up-title h5">Don't have an account?</div>
+                <div class="sub-title h5">
+                    Click on <a routerLink="/auth/register">Sign up</a> to register
+                </div>
+            </div>
+            <app-loader *ngIf="fetching"></app-loader>
+            <!-- <app-message-banner (bannerClosed)="bannerClosed($event)" [showItem]="showBanner"
+                [properties]="bannerProperties" [data]="bannerData"></app-message-banner> -->
+        </div>
+        <div class="login-image-container col-6">
+            <img class="login-image" src="./assets/svg/login.svg" alt="" />
+        </div>
+    </div>
+</div>

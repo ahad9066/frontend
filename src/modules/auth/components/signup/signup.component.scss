@@ -1,0 +1,64 @@
+@import "../../../../assets/common/theme.scss";
+
+.agent-register-container {
+    //   margin-top: 2rem;
+    // width: 75%;
+    margin: 2rem 0 4rem 0;
+
+    .title {
+        text-align: center;
+        color: $raw-umber;
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+
+    .form-container {
+
+        // width: 60%;
+        // margin: auto;
+        form {
+            width: 100%;
+
+            .user-details-container {
+                // width: 500px;
+                width: 50%;
+                border: 1px solid $rose-taupe;
+                border-radius: 8px;
+                position: relative;
+                padding: 20px;
+
+                .details-label {
+                    position: absolute;
+                    top: -13px;
+                    background-color: white;
+                }
+            }
+
+            .address-details-container {
+                width: 50%;
+                border: 1px solid $rose-taupe;
+                border-radius: 8px;
+                position: relative;
+                padding: 20px;
+
+                .details-label {
+                    position: absolute;
+                    top: -13px;
+                    background-color: white;
+                }
+            }
+        }
+
+        .form-field-container {
+            margin-bottom: 1rem;
+
+            .form-field {
+                width: 100%;
+
+                .mat-form-field-wrapper {
+                    padding-bottom: 0rem;
+                }
+            }
+        }
+    }
+}

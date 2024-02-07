@@ -1,0 +1,17 @@
+<div class="products-container">
+    <div class="container">
+        <div class="heading">
+            <h2>FerroTitanium Products</h2>
+        </div>
+        <div class="products-list row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-5">
+            <div class="col" *ngFor="let product of productsList">
+                <div class="card" (click)="viewDetails(product.code)">
+                    <div class="card-body">
+                        <img [src]="product.img" alt="">
+                        <h6 class="text-center">{{product.name}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

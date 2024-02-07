@@ -1,1 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/common/theme.scss";
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-22 {
+    font-size: 22px;
+}
+
+.fs-24 {
+    font-size: 24px;
+}
+
+.fs-26 {
+    font-size: 26px;
+}
+
+.fs-28 {
+    font-size: 28px;
+}
+
+.fs-30 {
+    font-size: 30px;
+}
+
+.fs-52 {
+    font-size: 52px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.mat-menu-panel {
+    border-top: 5px solid $raw-umber;
+    padding: 20px;
+    min-width: 300px !important;
+    border-bottom: 5px solid $raw-umber;
+    box-shadow: 0px 6px 7px 0px black !important;
+}
+
+.mat-tab-label .mat-tab-label-content {
+    font-size: 22px !important;
+}
+
+.mat-tab-label-active {
+    font-weight: bold !important;
+}
+
+.mat-ink-bar {
+    background-color: $raw-umber !important;
+}
+
+.composition-dropdown {
+    .mat-form-field-infix {
+        width: 250px !important;
+    }
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $raw-umber !important;
+}
+
+.mat-form-field-flex {
+    border-bottom: 2px solid $raw-umber !important;
+}

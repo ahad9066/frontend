@@ -1,0 +1,45 @@
+@import "../../../../assets/common/theme.scss";
+
+.product-details-container {
+    .tabs-container {
+        .composition-title {
+            .mat-form-field {
+                .mat-form-field-infix {
+                    width: 200px !important;
+                }
+            }
+        }
+
+        .composition-table {
+            thead {
+                th {
+                    background-color: $cornsilk;
+                }
+            }
+        }
+
+        .buy-container {
+            padding: 10px;
+
+            button {
+                background-color: $raw-umber;
+                color: White;
+            }
+
+            input {
+                width: 80px;
+                height: 33px;
+            }
+
+        }
+
+        .button-container {
+            padding: 10px;
+
+            button {
+                background-color: $raw-umber;
+                color: White;
+            }
+        }
+    }
+}

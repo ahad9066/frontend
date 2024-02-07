@@ -8,5 +8,15 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+(async () => {
+  const response = await fetch('./config/env.json');
+  const config = await response.json();
+
+  environment.baseURL = config.baseURL;
+  environment.productsBaseUrl = config.productsBaseUrl;
+  environment.spaURL = config.spaURL;
+
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((err) => console.error(err));
+})();

@@ -1,0 +1,31 @@
+@import "../../../../assets/common/theme.scss";
+
+.products-container {
+    .products-list {
+        margin-top: 30px;
+        margin-bottom: 100px;
+
+        .card {
+            &:hover {
+                cursor: pointer;
+                border: 1px solid $raw-umber;
+                transition: transform 1s ease;
+                transform: scale(1.1, 1.1)
+            }
+
+            max-height: 400px;
+
+            .card-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                img {
+                    width: 300px;
+                    height: 300px;
+                }
+            }
+        }
+    }
+
+}

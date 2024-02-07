@@ -1,0 +1,33 @@
+@import "../../../assets/common/theme.scss";
+
+.header-container {
+
+    .links-container {
+        a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                color: $raw-umber;
+            }
+
+            &:visited {
+                text-decoration: none;
+                color: $raw-umber;
+            }
+        }
+    }
+
+    .login-btn {
+        width: 100px;
+
+        &:hover {
+            background-color: $raw-umber;
+            color: white;
+        }
+    }
+}
+
+.menu-container {
+    width: 300px;
+}
