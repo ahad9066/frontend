@@ -20,7 +20,8 @@ export class SubGradesHelper {
             id: data['id'] ? data['id'] : null,
             name: data['name'] ? data['name'] : null,
             composition: data['composition'] ? [...data['composition'].map((comp: any) => CompositionHelper.createFromResponse(comp))] : [],
-            sizes: data['sizes'] ? [...data['sizes'].map((size: any) => SizesHelper.createFromResponse(size))] : []
+            sizes: data['sizes'] ? [...data['sizes'].map((size: any) => SizesHelper.createFromResponse(size))] : [],
+            price: data['price'] ? data['price'] : null
         } as SubGrades;
     }
     static toRequest(addone) {

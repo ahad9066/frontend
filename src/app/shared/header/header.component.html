@@ -1,4 +1,4 @@
-<div class="header-container bg-grey">
+<div class="header-container bg-header-grey">
     <div class="header-sub-container">
         <div class="container logo-row">
             <div class="d-flex justify-content-center align-items-center p-4">
@@ -8,24 +8,25 @@
         <hr>
         <div class="container p-4 d-flex align-items-center">
             <div class="col-6 d-flex links-container">
-                <div class="me-5 color-raw-umber fw-bold fs-20 cursor-pointer"><a routerLink="/">Home</a></div>
-                <div class="me-5 color-raw-umber fw-bold fs-20 cursor-pointer"><a>About Us</a></div>
-                <div class="me-5 color-raw-umber fw-bold fs-20 cursor-pointer"><a routerLink="/products">Products</a>
+                <div class="me-5 color-black fw-bold fs-20 cursor-pointer"><a routerLink="/">Home</a></div>
+                <div class="me-5 color-black fw-bold fs-20 cursor-pointer"><a>About Us</a></div>
+                <div class="me-5 color-black fw-bold fs-20 cursor-pointer"><a routerLink="/products">Products</a>
                 </div>
             </div>
             <div class="col-6 d-flex align-items-center justify-content-end">
                 <div class="mt-2 ms-5 d-flex justify-content-center align-items-cente">
-                    <a>
-                        <i class="fa-solid fa-cart-shopping fs-30 color-raw-umber cursor-pointer"></i>
+                    <a routerLink="/cart">
+                        <i [matBadge]="cartItemsLength" matBadgeColor="warn"
+                            class="fa-solid fa-cart-shopping fs-30 color-cornsilk cursor-pointer"></i>
                     </a>
                 </div>
                 <div *ngIf="!isLoggedIn" class="ms-5 d-flex justify-content-center align-items-center">
                     <button (click)="login()" type="button"
-                        class="login-btn btn bg-raw-umber color-white fs-18">Login</button>
+                        class="login-btn btn bg-cornsilk color-black fw-bold fs-18">Login</button>
                 </div>
                 <div *ngIf="isLoggedIn" [matMenuTriggerFor]="menu"
                     class="ms-5 d-flex-justify-content-center align-items-center">
-                    <i class="fs-52 color-raw-umber fa-solid fa-circle-user cursor-pointer"></i>
+                    <i class="fs-52 color-cornsilk fa-solid fa-circle-user cursor-pointer"></i>
                 </div>
                 <mat-menu #menu="matMenu" yPosition="below">
                     <button mat-menu-item>

@@ -14,6 +14,10 @@ import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthModule } from 'src/modules/auth/auth.module';
 import { HttpReqResInterceptor } from 'src/modules/auth/http-req-res.interceptor';
+import { CartComponent } from './cart/cart.component';
+import { ApiService } from './services/api.service';
+import { CartState } from './store/state/cart.state';
+import { SharedModule } from 'src/modules/shared/shared.module';
 
 export function ModuleConfigFactory(): AuthModule {
   return {
@@ -27,13 +31,14 @@ export function ModuleConfigFactory(): AuthModule {
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    NgxsModule.forRoot([], {
+    NgxsModule.forRoot([CartState], {
       developmentMode: !environment.production,
     }),
     NgxsRouterPluginModule.forRoot(),
@@ -41,8 +46,10 @@ export function ModuleConfigFactory(): AuthModule {
     ToastContainerModule,
     HttpClientModule,
     AuthModule.forRoot(),
+    SharedModule
   ],
   providers: [
+    ApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpReqResInterceptor,

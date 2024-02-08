@@ -11,22 +11,22 @@ export class ProductsComponent implements OnInit {
     {
       img: "./assets/images/standard_grain.png",
       name: "Standard: 10 - 50 mm",
-      code: "STD"
+      code: "STD_10_50"
     },
     {
       img: "./assets/images/medium_grain.png",
       name: "Medium: 10 - 30 mm",
-      code: "MED"
+      code: "MED_10_30"
     },
     {
       img: "./assets/images/small_grain.png",
       name: "Small: 4 - 10 mm",
-      code: "SML"
+      code: "SML_4_10"
     },
     {
       img: "./assets/images/fine_grain.png",
       name: "Fines : 0 - 2 mm",
-      code: "FINE"
+      code: "FIN_0_2"
     }
   ]
 

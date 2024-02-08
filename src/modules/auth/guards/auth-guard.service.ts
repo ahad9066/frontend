@@ -18,8 +18,8 @@ export class AuthGuard implements CanActivate {
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
         return this.store.select(AuthSelectors.GetIsUserLoggedIn).pipe(
-            map((isLoggedIn: boolean) => {
-                if (isLoggedIn) {
+            map((data: { isLoggedIn: boolean, userId: string }) => {
+                if (data.isLoggedIn) {
                     return true;
                 } else {
                     const access_token = sessionStorage.getItem('access_token');

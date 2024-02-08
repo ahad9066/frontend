@@ -1,12 +1,24 @@
 .headless-container {
     min-height: 100%;
     position: relative;
-    margin: 20px;
+    // margin: 20px;
+    min-height: calc(100vh - 195px);
+    /* Ensure minimum height */
+    // padding-bottom: 195px;
 }
 
-#footer {
-    position: absolute;
-    // bottom: 0;
+// #footer {
+//     position: absolute;
+//     // bottom: 0;
+//     width: 100%;
+//     // height: 300px;
+// }
+
+.parent {
+    position: relative;
+    /* Position the container relative */
     width: 100%;
-    // height: 300px;
+    height: 100%;
+    /* Ensure the container fills the viewport height */
+    // overflow: auto;
 }

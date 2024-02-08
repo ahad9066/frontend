@@ -1,6 +1,7 @@
 
 
 export class GetProducts {
-    static readonly type = '[Prooducts] Get Products';
+    static readonly type = '[Products] Get Products';
     constructor() { }
 }
+

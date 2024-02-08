@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from '../modules/products/components/products/products.component';
 import { LoginComponent } from 'src/modules/auth/components/login/login.component';
 import { SignupComponent } from 'src/modules/auth/components/signup/signup.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       import('../wrappers/products.wrapper').then(
         (m) => m.ProductsWrapperModule
       ),
+  },
+  {
+    path: 'cart',
+    component: CartComponent
   }
 ];
 

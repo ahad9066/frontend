@@ -1,5 +1,31 @@
 .home-container {
+    // position: relative;
+    height: 500px;
+    min-height: calc(100vh);
+
     .bg-holder {
+        position: absolute;
+        overflow: hidden;
+        // z-index: 2;
+        width: 100%;
+        min-height: 1000px;
+        max-height: 3000px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        transform: translate(0px, 0px);
+        // z-index: 2;
+
         background-image: url("../../assets/images/bg-image.jpeg");
+    }
+
+    .gif-background {
+        min-width: 500px;
+        height: 500px;
+        background-image: url('../../assets/images/metalliage.gif');
+        background-size: cover;
+        /* or contain, or specific dimensions */
+        // background-repeat: no-repeat;
+        background-position: center;
     }
 }

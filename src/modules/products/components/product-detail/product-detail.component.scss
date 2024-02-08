@@ -1,6 +1,8 @@
 @import "../../../../assets/common/theme.scss";
 
 .product-details-container {
+    margin: 20px;
+
     .tabs-container {
         .composition-title {
             .mat-form-field {
@@ -42,4 +44,8 @@
             }
         }
     }
+}
+
+.bottom-container {
+    padding: 50px;
 }

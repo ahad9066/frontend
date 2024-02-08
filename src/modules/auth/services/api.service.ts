@@ -16,7 +16,6 @@ export class ApiService {
 
     // tslint:disable-next-line: typedef
     public signUp(data: any) {
-        console.log('im in sevice')
         return this.httpClient.post(`${environment.baseURL}/auth/signup`, data);
     }
 
@@ -25,6 +24,9 @@ export class ApiService {
     }
     public logout() {
         return this.httpClient.get(`${environment.baseURL}/auth/logout`);
+    }
+    public getUserDetails() {
+        return this.httpClient.get(`${environment.baseURL}/users/loggedInUser`);
     }
 }
 

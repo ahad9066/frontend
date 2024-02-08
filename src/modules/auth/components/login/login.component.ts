@@ -55,7 +55,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.subscriptions.push(
         this.store.dispatch(new Login({ username: this.loginForm.value.username, password: this.loginForm.value.password })).subscribe(
           () => {
-            this.router.navigate(['/']);
+            const previousUrl = sessionStorage.getItem('previousUrl');
+            if (previousUrl) {
+              console.log("previousUrl", previousUrl)
+              sessionStorage.removeItem('previousUrl');
+              this.router.navigateByUrl(previousUrl);
+            } else {
+              this.router.navigateByUrl('/');
+            }
           },
           (error: HttpErrorResponse) => {
             console.error('error: ', error);

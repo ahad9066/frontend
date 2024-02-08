@@ -12,6 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ModuleConfig } from './services/api.service';
 import { Store } from '@ngxs/store';
 import { SharedService } from '../shared/services/shared.service';
+import { Logout } from './store/actions/auth.action';
 
 @Injectable()
 export class HttpReqResInterceptor implements HttpInterceptor {
@@ -42,10 +43,13 @@ export class HttpReqResInterceptor implements HttpInterceptor {
                 return event;
             }),
             catchError((error: HttpErrorResponse) => {
+                console.log("interccc", error)
                 if (error && error.status === 401) {
+                    this.store.dispatch(new Logout());
                     this.sharedService.showErrors("You are unauthorised to access this. Please Login!");
                     this.router.navigateByUrl('/auth/login');
                 } else if (error && error.status === 403) {
+                    this.store.dispatch(new Logout());
                     this.sharedService.showErrors("You do not have permission to access this url");
                     this.router.navigateByUrl('/auth/login');
                 }

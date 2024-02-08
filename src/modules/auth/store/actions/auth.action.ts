@@ -15,3 +15,7 @@ export class SetIsLoggedIn {
     static readonly type = '[SignUp] Set Is Logged In ';
     constructor(public isLoggedIn: Boolean) { }
 }
+export class GetUserDetails {
+    static readonly type = '[Header] Get User Details';
+    constructor() { }
+}

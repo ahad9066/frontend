@@ -9,6 +9,7 @@ export interface SubGrades {
     name: string;
     composition: Composition[];
     sizes: Sizes[];
+    price: string;
 }
 
 export interface Composition {

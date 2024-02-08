@@ -1,12 +1,14 @@
 <div toastContainer></div>
-<header>
-  <app-header></app-header>
-</header>
-<main>
-  <div class="headless-container">
-    <router-outlet></router-outlet>
-  </div>
-</main>
-<footer>
-  <app-footer id="footer"></app-footer>
-</footer>
+<div class="parent">
+  <header>
+    <app-header></app-header>
+  </header>
+  <main>
+    <div class="headless-container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <footer>
+    <app-footer id="footer"></app-footer>
+  </footer>
+</div>

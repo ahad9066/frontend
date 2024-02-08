@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Action, State, StateContext } from "@ngxs/store";
 import { UserDetailsHelper } from "../../schema/models/user.model";
 import { UserDetails } from "../../schema/interfaces/user.interface";
-import { Login, Logout, SetIsLoggedIn, SignUp } from "../actions/auth.action";
+import { GetUserDetails, Login, Logout, SetIsLoggedIn, SignUp } from "../actions/auth.action";
 import { ApiService } from "../../services/api.service";
 import { tap } from "rxjs";
 
@@ -48,7 +48,6 @@ export class AuthState {
         { patchState }: StateContext<AuthStateModel>,
         { payload }: SignUp
     ) {
-        console.log('im in state')
         return this.apiService.signUp(payload).pipe(
             tap(
                 (r: UserDetails) => {
@@ -82,6 +81,23 @@ export class AuthState {
                     patchState({
                         userDetails: null,
                         isLoggedIn: false
+                    });
+                },
+                (error) => {
+                    return error;
+                }
+            )
+        );
+    }
+    @Action(GetUserDetails)
+    getUserDetails(
+        { patchState }: StateContext<AuthStateModel>
+    ) {
+        return this.apiService.getUserDetails().pipe(
+            tap(
+                (r: UserDetails) => {
+                    patchState({
+                        userDetails: r
                     });
                 },
                 (error) => {

@@ -68,6 +68,10 @@ $black: #000000ff;
     background-color: $rose-taupe;
 }
 
+.color-caramel {
+    color: $caramel;
+}
+
 .color-cornsilk {
     color: $cornsilk;
 }
@@ -94,4 +98,15 @@ $black: #000000ff;
 
 .bg-grey {
     background-color: $grey;
+}
+
+.bg-header-grey {
+    background: linear-gradient(to right, #CB8152, #885774);
+
+
+    // background: $gradient-radial;
+}
+
+.color-black {
+    color: Black;
 }
