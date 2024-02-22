@@ -5,6 +5,8 @@ import { ProductsComponent } from '../modules/products/components/products/produ
 import { LoginComponent } from 'src/modules/auth/components/login/login.component';
 import { SignupComponent } from 'src/modules/auth/components/signup/signup.component';
 import { CartComponent } from './cart/cart.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { AuthGuard } from 'src/modules/auth/guards/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -28,7 +30,13 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'orders',
+    component: MyOrdersComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

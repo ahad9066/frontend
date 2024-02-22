@@ -1,0 +1,96 @@
+<div class="my-orders-container">
+    <app-loader *ngIf="fetching"></app-loader>
+    <app-error [errorMsg]="errorMsg" *ngIf="showError"></app-error>
+    <div class="no-items-container container d-flex align-items-center justify-content-center"
+        *ngIf="!fetching && ordersList.length == 0">
+        <div class="fs-30 text-center fw-bold d-flex flex-column justify-content-center align-items-center">
+            <div>Currently you have no orders placed !</div>
+            <div>
+                <button mat-raised-button class=" bg-raw-umber color-white" (click)="shop()">
+                    Shop Now
+                    <i class="bi bi-cart4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container orders" *ngIf="!fetching && ordersList.length> 0">
+        <p class="fw-bold fs-28 text-center"> My Orders</p>
+        <div>
+            <div *ngFor="let item of ordersList" class="mb-4 card p-3 cart-item mb-3 d-flex flex-column">
+                <div class="title d-flex justify-content-between">
+                    <div>
+                        <div class="fw-bold fs-24"><span class=" color-caramel">Order ID:</span> {{item.orderId}}</div>
+                        <div class="fw-bold fs-20"><span class=" color-caramel">Ordered Date:</span>
+                            {{item.createdAt|date}}
+                        </div>
+                    </div>
+                    <div class="fw-bold fs-24 "><span class="color-caramel">Total Amount:</span> {{item.totalAmount |
+                        currency: 'CAD'
+                        :'symbol-narrow'}}
+                    </div>
+                </div>
+                <div class="d-flex row row-cols-2">
+                    <div *ngFor="let orderItem of item.orderItems" class="col d-flex align-items-center">
+                        <div class="image-holder">
+                            <img [src]="sizeChart[orderItem.size.id].img" alt="">
+                        </div>
+                        <div class="content-holder">
+                            <div class="fs-20 fw-bold product-title mb-2">
+                                {{orderItem.subGrade.name}}
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class=" me-2 fw-bold">Quantity (unit: Ton):</div>
+                                <div class="quantity fs-18">
+                                    {{orderItem.quantity}}
+                                </div>
+
+                            </div>
+                            <div class="price-container d-flex me-2 fs-20">
+                                <div class="fw-bold me-2">Total Price:</div>
+                                <div>{{ (+orderItem.quantity) * (+orderItem.price) | currency: 'CAD' :'symbol-narrow' }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button (click)="trackOrder(item)" class="me-2 p-2 px-3 bg-raw-umber color-white fw-bold fs-20"
+                        mat-raised-button mat-suffix>Track Order</button>
+                    <button (click)="cancelOrder()" class="p-2 px-3 bg-raw-umber color-white fw-bold fs-20"
+                        mat-raised-button mat-suffix>Cancel Order</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<ng-template #trackTemplate>
+    <div class="track-order-container">
+        <div class="title fw-bold fs-22 text-center">Track Your Order</div>
+        <div class="fs-22 text-center">
+            <span> Order Status:&nbsp;&nbsp;</span><span>{{currentOrder.status}}</span>
+        </div>
+        <div class="progress-container">
+            <div class="progress-step" [ngClass]="{ 'completed': currentStep >= 1, 'disabled': currentStep < 1 }">
+                <div class="step-marker"></div>
+                <div class="step-label">Payment Initiated</div>
+            </div>
+            <div class="progress-step" [ngClass]="{ 'completed': currentStep >= 2, 'disabled': currentStep < 2 }">
+                <div class="step-marker"></div>
+                <div class="step-label">Payment Done</div>
+            </div>
+            <div class="progress-step" [ngClass]="{ 'completed': currentStep >= 3, 'disabled': currentStep < 3 }">
+                <div class="step-marker"></div>
+                <div class="step-label">Packed</div>
+            </div>
+            <div class="progress-step" [ngClass]="{ 'completed': currentStep >= 4, 'disabled': currentStep < 4 }">
+                <div class="step-marker"></div>
+                <div class="step-label">Shipped</div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</ng-template>

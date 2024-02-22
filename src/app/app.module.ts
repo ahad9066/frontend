@@ -18,6 +18,8 @@ import { CartComponent } from './cart/cart.component';
 import { ApiService } from './services/api.service';
 import { CartState } from './store/state/cart.state';
 import { SharedModule } from 'src/modules/shared/shared.module';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { AuthGuard } from 'src/modules/auth/guards/auth-guard.service';
 
 export function ModuleConfigFactory(): AuthModule {
   return {
@@ -32,6 +34,7 @@ export function ModuleConfigFactory(): AuthModule {
     FooterComponent,
     HomeComponent,
     CartComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ export function ModuleConfigFactory(): AuthModule {
   ],
   providers: [
     ApiService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpReqResInterceptor,

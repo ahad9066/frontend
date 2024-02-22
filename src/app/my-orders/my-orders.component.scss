@@ -1,0 +1,52 @@
+.my-orders-container {
+    margin: 20px;
+    min-height: 500px;
+
+    .no-items-container {
+        height: 500px;
+    }
+
+    .orders {
+        .title {
+            padding: 20px;
+            border-bottom: 1px solid black;
+        }
+
+        .image-holder {
+            img {
+                height: 200px;
+                width: 200px;
+            }
+        }
+    }
+
+    .progress-container {
+        display: flex;
+    }
+
+    .progress-step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+    }
+
+    .progress-step .step-label {
+        margin-top: 8px;
+    }
+
+    .progress-step::before {
+        content: '';
+        position: absolute;
+        top: 16px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #ccc;
+    }
+
+    .progress-step.completed::before {
+        background-color: #007bff;
+        /* Color for completed steps */
+    }
+
+}

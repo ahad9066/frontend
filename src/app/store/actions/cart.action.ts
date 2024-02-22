@@ -14,3 +14,18 @@ export class AddToCart {
     static readonly type = '[Products] Add To Cart';
     constructor(public payload: any) { }
 }
+export class DeleteCartItems {
+    static readonly type = '[Cart] Delete Cart Items';
+    constructor(public payload: { userId: string }) { }
+}
+
+
+
+export class PlaceOrder {
+    static readonly type = '[Cart] Place Order';
+    constructor(public payload: any) { }
+}
+export class GetOrdersList {
+    static readonly type = '[Orders] Get Orders List';
+    constructor(public payload: { userId: string }) { }
+}

@@ -83,3 +83,64 @@
 .mat-form-field-flex {
     border-bottom: 2px solid $raw-umber !important;
 }
+
+.progress-container {
+    display: flex;
+    margin-top: 60px;
+    justify-content: space-between;
+
+}
+
+.progress-step {
+    justify-content: space-between;
+    text-align: center;
+    position: relative;
+}
+
+.progress-step .step-label {
+    margin-top: 8px;
+    // position: absolute;
+    // bottom: -57%;
+    text-align: center;
+}
+
+.step-marker {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    background-color: transparent;
+    z-index: 99 !important;
+}
+
+.progress-step.completed .step-marker {
+    background-color: green;
+    border-color: green;
+}
+
+.progress-step.completed .step-marker::after {
+    content: '\2713';
+    /* Check mark character */
+    color: white;
+    font-size: 16px;
+}
+
+.progress-step.disabled .step-marker {
+    background-color: #ccc;
+    color: #999;
+}
+
+/* Add edges between circles */
+.progress-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 98px);
+    height: 2px;
+    background-color: #ccc;
+    top: 33%;
+    left: 30%;
+}

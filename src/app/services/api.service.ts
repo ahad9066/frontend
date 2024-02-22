@@ -16,7 +16,15 @@ export class ApiService {
     public addToCart(payload) {
         return this.httpClient.post(`${environment.productsBaseUrl}/cart`, payload);
     }
-
+    public deleteCartItems(userId) {
+        return this.httpClient.delete(`${environment.productsBaseUrl}/cart/${userId}`);
+    }
+    public placeOrder(payload) {
+        return this.httpClient.post(`${environment.productsBaseUrl}/orders`, payload);
+    }
+    public getAllOrders(userId) {
+        return this.httpClient.get(`${environment.productsBaseUrl}/orders/${userId}`);
+    }
 
 }
 

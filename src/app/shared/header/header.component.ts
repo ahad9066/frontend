@@ -86,6 +86,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       )
     );
   }
+  orders() {
+    this.router.navigateByUrl('/orders')
+  }
   ngOnDestroy() {
     this.subs.forEach((data) => data.unsubscribe());
   }

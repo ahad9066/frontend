@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { Address, UserDetails } from 'src/modules/auth/schema/interfaces/user.interface';
 import { AuthSelectors } from 'src/modules/auth/store/selectors/auth.selector';
-import { AddToCart, GetCartItems } from '../store/actions/cart.action';
+import { AddToCart, DeleteCartItems, GetCartItems, PlaceOrder } from '../store/actions/cart.action';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CartItem, UserCart } from 'src/modules/products/schema/interfaces/cart.interface';
 import { SizeChart } from 'src/modules/shared/app.constants';
@@ -122,6 +122,35 @@ export class CartComponent implements OnInit, OnDestroy {
         })
     );
     console.log("updated", res)
+  }
+  placeOrder() {
+    this.fetching = true;
+    const orderObj = {
+      userId: this.userId,
+      addressId: this.address._id,
+      orderItems: this.cartItems,
+      totalAmount: this.totalAmount
+    }
+    this.subs.push(
+      this.store.dispatch(new PlaceOrder(orderObj)).subscribe(res => {
+        this.deleteCartItems(this.userId);
+      }, (error: HttpErrorResponse) => {
+        console.error('error: ', error);
+        this.fetching = false;
+        this.sharedService.showErrors("'Something went wrong! please try again!'");
+      })
+    );
+    console.log("carItem", this.cartItems)
+  }
+  deleteCartItems(userId) {
+    this.store.dispatch(new DeleteCartItems(userId)).subscribe(res => {
+      this.fetching = false;
+      this.router.navigateByUrl('/orders');
+    }, (error: HttpErrorResponse) => {
+      console.error('error: ', error);
+      this.fetching = false;
+      this.sharedService.showErrors("'Something went wrong! please try again!'");
+    })
   }
   ngOnDestroy() {
     this.subs.forEach((data) => data.unsubscribe());

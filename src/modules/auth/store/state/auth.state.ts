@@ -78,6 +78,7 @@ export class AuthState {
             tap(
                 (r: UserDetails) => {
                     window.sessionStorage.removeItem('access_token');
+                    window.location.reload();
                     patchState({
                         userDetails: null,
                         isLoggedIn: false
