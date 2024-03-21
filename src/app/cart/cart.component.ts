@@ -42,15 +42,15 @@ export class CartComponent implements OnInit, OnDestroy {
         console.log("cart", res)
         this.isLoggedIn = res.isLoggedIn;
         this.userId = res.userId;
-        if (!this.isLoggedIn) {
-          const access_token = window.sessionStorage.getItem('access_token');
-          console.log("Access", access_token)
-          if (access_token) {
-            this.isLoggedIn = true;
-          } else {
-            this.router.navigateByUrl('/auth/login')
-          }
-        }
+        // if (!this.isLoggedIn) {
+        //   const access_token = window.sessionStorage.getItem('access_token');
+        //   console.log("Access", access_token)
+        //   if (access_token) {
+        //     this.isLoggedIn = true;
+        //   } else {
+        //     this.router.navigateByUrl('/auth/login')
+        //   }
+        // }
         if (!!this.userId) {
           console.log("userID", this.userId)
           this.getCartItems(this.userId);

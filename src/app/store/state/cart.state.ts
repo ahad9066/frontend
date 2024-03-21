@@ -3,7 +3,7 @@ import { Action, State, StateContext, Store } from "@ngxs/store";
 import { ApiService } from "../../services/api.service";
 import { tap } from "rxjs";
 import { CartItem } from "src/modules/products/schema/interfaces/cart.interface";
-import { AddToCart, DeleteCartItems, GetCartItems, GetOrdersList, PlaceOrder, UpdateCartItems } from "../actions/cart.action";
+import { AddToCart, CancelOrder, DeleteCartItems, GetCartItems, GetOrdersList, PlaceOrder, UpdateCartItems } from "../actions/cart.action";
 import { SharedService } from "src/modules/shared/services/shared.service";
 import { Order } from "src/modules/products/schema/interfaces/order.interface";
 
@@ -130,5 +130,25 @@ export class CartState {
             )
         );
     }
-
+    @Action(CancelOrder)
+    cancelOrder(
+        { patchState, getState }: StateContext<CartStateModel>,
+        { payload }: CancelOrder
+    ) {
+        return this.apiService.cancelOrder(payload).pipe(
+            tap(
+                (res: any) => {
+                    console.log("cancel order", res)
+                    const list = getState().orderList.map(order =>
+                        order.orderId == res.orderId ? res : order)
+                    patchState({
+                        orderList: list
+                    });
+                },
+                (error) => {
+                    return error;
+                }
+            )
+        );
+    }
 }

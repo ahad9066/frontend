@@ -29,3 +29,8 @@ export class GetOrdersList {
     static readonly type = '[Orders] Get Orders List';
     constructor(public payload: { userId: string }) { }
 }
+
+export class CancelOrder {
+    static readonly type = '[Orders] Cancel Order';
+    constructor(public payload: { orderId: string }) { }
+}

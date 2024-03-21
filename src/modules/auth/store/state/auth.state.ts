@@ -66,9 +66,19 @@ export class AuthState {
         { patchState }: StateContext<AuthStateModel>,
         { isLoggedIn }: SetIsLoggedIn
     ) {
-        patchState({
-            isLoggedIn: isLoggedIn,
-        });
+        if (isLoggedIn) {
+            patchState({
+                isLoggedIn: isLoggedIn,
+            });
+        } else {
+            window.sessionStorage.removeItem('access_token');
+            // window.location.reload();
+            patchState({
+                isLoggedIn: isLoggedIn,
+                userDetails: null,
+            });
+        }
+
     }
     @Action(Logout)
     logout(

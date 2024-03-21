@@ -6,4 +6,8 @@ export class CartSelectors {
     static GetCartItems(state: CartStateModel) {
         return state.cartItems;
     }
+    @Selector([CartState])
+    static GetOrderList(state: CartStateModel) {
+        return state.orderList;
+    }
 }

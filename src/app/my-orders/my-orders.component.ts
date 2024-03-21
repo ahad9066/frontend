@@ -4,10 +4,12 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { AuthSelectors } from 'src/modules/auth/store/selectors/auth.selector';
 import { Order } from 'src/modules/products/schema/interfaces/order.interface';
-import { GetOrdersList } from '../store/actions/cart.action';
+import { CancelOrder, GetOrdersList } from '../store/actions/cart.action';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SizeChart } from 'src/modules/shared/app.constants';
 import { MatDialog } from '@angular/material/dialog';
+import { CartSelectors } from '../store/selectors/cart.selector';
+import { SharedService } from 'src/modules/shared/services/shared.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -27,9 +29,10 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
   currentOrder: Order = null;
   currentStep = 1;
   @Select(AuthSelectors.GetIsUserLoggedIn) isLoggedIn$: Observable<any>;
+  @Select(CartSelectors.GetOrderList) orderList$: Observable<any>;
 
   constructor(private router: Router, private store: Store,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog, private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.subs.push(
@@ -68,12 +71,30 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
           this.errorMsg = "Something went wrong! please try again!"
         })
     )
+    this.subs.push(
+      this.orderList$.subscribe(res => {
+        this.ordersList = res;
+        this.ordersList = [...this.ordersList].reverse();
+      })
+    );
   }
   shop() {
     this.router.navigateByUrl('/products');
   }
-  cancelOrder() {
-
+  cancelOrder(orderId) {
+    this.fetching = true;
+    this.subs.push(
+      this.store.dispatch(new CancelOrder(orderId)).subscribe(res => {
+        this.sharedService.showSuccess(`Your order with orderID ${orderId} is cancelled successfully!`);
+        this.fetching = false;
+      },
+        (error: HttpErrorResponse) => {
+          console.error('error: ', error);
+          this.fetching = false;
+          this.showError = true;
+          this.errorMsg = "Something went wrong! please try again!"
+        }))
+      ;
   }
   trackOrder(order: Order): void {
     this.currentOrder = order;

@@ -22,6 +22,9 @@ export class ApiService {
     public placeOrder(payload) {
         return this.httpClient.post(`${environment.productsBaseUrl}/orders`, payload);
     }
+    public cancelOrder(orderId) {
+        return this.httpClient.get(`${environment.productsBaseUrl}/orders/cancel/${orderId}`);
+    }
     public getAllOrders(userId) {
         return this.httpClient.get(`${environment.productsBaseUrl}/orders/${userId}`);
     }

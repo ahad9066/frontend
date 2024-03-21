@@ -31,7 +31,10 @@ export class HttpReqResInterceptor implements HttpInterceptor {
         const refresh_token = window.sessionStorage.getItem('refresh_token');
         if (access_token != null) {
             request = request.clone({
-                setHeaders: { Authorization: 'Bearer ' + access_token },
+                setHeaders: {
+                    Authorization: 'Bearer ' + access_token,
+                    type: 'isCustomer'
+                },
             });
         } else if (access_token === null && refresh_token !== null) {
             request = request.clone({
