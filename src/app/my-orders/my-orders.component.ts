@@ -98,6 +98,11 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
   }
   trackOrder(order: Order): void {
     this.currentOrder = order;
+    if (this.currentOrder.status == 'payment_initiated') {
+      this.currentStep = 1;
+    } else if (this.currentOrder.status == 'payment_done') {
+      this.currentStep = 2;
+    }
     const dialogRef = this.dialog.open(this.trackTemplate, {
       width: '600px',
       height: '500px'
