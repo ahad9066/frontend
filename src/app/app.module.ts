@@ -20,6 +20,7 @@ import { CartState } from './store/state/cart.state';
 import { SharedModule } from 'src/modules/shared/shared.module';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AuthGuard } from 'src/modules/auth/guards/auth-guard.service';
+import { AboutComponent } from './about/about.component';
 
 export function ModuleConfigFactory(): AuthModule {
   return {
@@ -35,6 +36,7 @@ export function ModuleConfigFactory(): AuthModule {
     HomeComponent,
     CartComponent,
     MyOrdersComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

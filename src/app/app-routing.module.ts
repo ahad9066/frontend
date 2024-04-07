@@ -7,6 +7,7 @@ import { SignupComponent } from 'src/modules/auth/components/signup/signup.compo
 import { CartComponent } from './cart/cart.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AuthGuard } from 'src/modules/auth/guards/auth-guard.service';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
     path: 'orders',
     component: MyOrdersComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
